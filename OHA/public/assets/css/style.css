@@ -120,37 +120,6 @@ address {
 fade
 ===============================*/
 
-.fade-in {
-	opacity: 0;
-	transition: opacity 1s ease;
-}
-
-.fade-in.is-in-view {
-	opacity: 1;
-}
-
-.fade-in-up {
-	transform: translateY(24px);
-	opacity: 0;
-	transition: opacity 1s ease, transform 1s ease;
-}
-
-.fade-in-up.is-in-view {
-	transform: translateY(0);
-	opacity: 1;
-}
-
-.fade-in-down {
-	transform: translateY(-24px);
-	opacity: 0;
-	transition: opacity 1s ease, transform 1s ease;
-}
-
-.fade-in-down.is-in-view {
-	transform: translateY(0);
-	opacity: 1;
-}
-
 /*===============================
 共通クラス
 ===============================*/
