@@ -242,7 +242,7 @@ const intersectionObserver = new IntersectionObserver(
 	function(entries){
 		entries.forEach(function(entry){
 			if(entry.isIntersecting){
-				entry.target.classList.add('is-in-view');
+				// entry.target.classList.add('is-in-view'); gsap練習のため、その他のアニメーション無効にする
 			}else{
 //				entry.target.classList.remove('is-in-view');
 			}
