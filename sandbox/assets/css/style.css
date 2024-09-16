@@ -35,10 +35,29 @@ body{
 	padding: 2px;
 	color: white;
 }
+.box3{
+	width: 30px;
+	height: 30px;
+	background-color: #AAAAAA;
+	padding: 2px;
+	color: white;
+}
+.box4{
+	width: 5px;
+	height: 5px;
+	background-color: #AAAAAA;
+	padding: 2px;
+	color: white;
+}
 
 
 .flex{
 	display: flex;
 	flex-wrap: wrap;
 	gap: 30px;
+}
+.flex2{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0;
 }

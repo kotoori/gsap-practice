@@ -59,7 +59,53 @@ gsap.to(".--ease.--elastic1", {x:500, duration: 2, ease: "elastic.inOut(1, 1)", 
 gsap.to(".--ease.--elastic2", {x:500, duration: 2, ease: "elastic.inOut(2, 1)", repeat: -1});
 gsap.to(".--ease.--elastic3", {x:500, duration: 2, ease: "elastic.inOut(2, 2)", repeat: -1});
 
+//stagger
+gsap.from(".--stagger", {
+	y: 10,
+	autoAlpha: 0,
+	duration: 1,
+	ease: "power4.inOut",
+	stagger: 0.05,//0.05秒ごとに出現
+});
 
+//stagger random
+gsap.to(".--stagger-random", {
+  y: "100px",
+  duration: 2,
+  ease: "bounce.out",
+	repeat: -1,
+  stagger: {
+    each: 0.01, // ばらす間隔（秒）
+    from: "random" // ランダムに開始
+  },
+});
 
+// 格子状に適用
+gsap.from(".--stagger-grid", {
+  scale: 0,
+  duration: 1,
+  ease: "power4.out",
+	repeat: -1,
+  stagger: {
+    each: 0.05,
+    from: "random", // 中央から
+    grid: "auto", // 格子状に開始
+    ease: "power4.out", // 間隔に対するイージング
+  },
+});
 
+const params = { pointX: 0, pointY: 0 };
 
+gsap.to(params, {
+  pointX: 100,
+	pointY: 100,
+	duration: 2,
+  ease: "power4.inOut",
+  onUpdate: () => {
+		console.log(params.pointX, params.pointY);
+		const x = params.pointX;
+		const y = params.pointY;
+		gsap.set(".--object", { x, y }); // 座標を適用
+  },
+  repeat: -1,
+});
