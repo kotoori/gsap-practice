@@ -109,3 +109,25 @@ gsap.to(params, {
   },
   repeat: -1,
 });
+
+const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.5 });
+tl.to(".--timeline", { x: 200, duration: 1 });
+tl.to(".--timeline", { y: 200, duration: 1 });
+tl.to(".--timeline", { rotate: "360deg", duration: 1 });
+tl.to(".--timeline", { x:0, y: 0, duration: 1 , delay: 2 });
+tl.to(".--timeline", { rotate: "0deg", duration: 1 });
+
+const tl_time = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+
+tl_time.set(".--timeline-time__txt", { textContent: "モーションを重ねない動き", color: "red" });
+tl_time.to(".--timeline-time1", { y: -100, autoAlpha: 0, duration: 1 });
+tl_time.to(".--timeline-time2", { y: 100, autoAlpha: 0, duration: 1 });
+tl_time.to(".--timeline-time3", { y: -100, autoAlpha: 0, duration: 1 });
+tl_time.to(".--timeline-time4", { y: 100, autoAlpha: 0, duration: 1 });
+tl_time.to(".--timeline-time5", { y: -100, autoAlpha: 0, duration: 1 });
+tl_time.set(".--timeline-time__txt", { textContent: "モーションを重ねる動き", color: "blue", delay: 1 });
+tl_time.to(".--timeline-time1", { y: 0, autoAlpha: 1, duration: 1 });
+tl_time.to(".--timeline-time2", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
+tl_time.to(".--timeline-time3", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
+tl_time.to(".--timeline-time4", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
+tl_time.to(".--timeline-time5", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
