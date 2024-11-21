@@ -88,7 +88,7 @@ gsap.from(".--stagger-grid", {
 	repeat: -1,
   stagger: {
     each: 0.05,
-    from: "random", // 中央から
+    from: "center", // 中央から
     grid: "auto", // 格子状に開始
     ease: "power4.out", // 間隔に対するイージング
   },
@@ -102,7 +102,7 @@ gsap.to(params, {
 	duration: 2,
   ease: "power4.inOut",
   onUpdate: () => {
-		console.log(params.pointX, params.pointY);
+		// console.log(params.pointX, params.pointY);
 		const x = params.pointX;
 		const y = params.pointY;
 		gsap.set(".--object", { x, y }); // 座標を適用
@@ -117,17 +117,99 @@ tl.to(".--timeline", { rotate: "360deg", duration: 1 });
 tl.to(".--timeline", { x:0, y: 0, duration: 1 , delay: 2 });
 tl.to(".--timeline", { rotate: "0deg", duration: 1 });
 
+// const tl_time = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+
+// tl_time.set(".--timeline-time__txt", { textContent: "モーションを重ねない動き", color: "red" });
+// tl_time.to(".--timeline-time1", { y: -100, autoAlpha: 0, duration: 1 });
+// tl_time.to(".--timeline-time2", { y: 100, autoAlpha: 0, duration: 1 });
+// tl_time.to(".--timeline-time3", { y: -100, autoAlpha: 0, duration: 1 });
+// tl_time.to(".--timeline-time4", { y: 100, autoAlpha: 0, duration: 1 });
+// tl_time.to(".--timeline-time5", { y: -100, autoAlpha: 0, duration: 1 });
+// tl_time.to(".--timeline-time1", { y: 0, autoAlpha: 1, duration: 1 });
+// tl_time.to(".--timeline-time2", { y: 0, autoAlpha: 1, duration: 1 });
+// tl_time.to(".--timeline-time3", { y: 0, autoAlpha: 1, duration: 1 });
+// tl_time.to(".--timeline-time4", { y: 0, autoAlpha: 1, duration: 1 });
+// tl_time.to(".--timeline-time5", { y: 0, autoAlpha: 1, duration: 1 });
+// tl_time.set(".--timeline-time__txt", { textContent: "モーションを重ねる動き", color: "blue", delay: 1 });
+// tl_time.to(".--timeline-time1", { y: -100, autoAlpha: 0, duration: 1 });
+// tl_time.to(".--timeline-time2", { y: 100, autoAlpha: 0, duration: 1 }, "-=0.7");
+// tl_time.to(".--timeline-time3", { y: -100, autoAlpha: 0, duration: 1 }, "-=0.7");
+// tl_time.to(".--timeline-time4", { y: 100, autoAlpha: 0, duration: 1 }, "-=0.7");
+// tl_time.to(".--timeline-time5", { y: -100, autoAlpha: 0, duration: 1 }, "-=0.7");
+// tl_time.to(".--timeline-time1", { y: 0, autoAlpha: 1, duration: 1 });
+// tl_time.to(".--timeline-time2", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
+// tl_time.to(".--timeline-time3", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
+// tl_time.to(".--timeline-time4", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
+// tl_time.to(".--timeline-time5", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
+
+//↑のタイムラインをネスト（関数化）する
+function tl_time_func(target, position) {
+  target.to(".--timeline-time1", { y: -100, autoAlpha: 0, duration: 1 });
+  target.to(".--timeline-time2", { y: 100, autoAlpha: 0, duration: 1 }, position);
+  target.to(".--timeline-time3", { y: -100, autoAlpha: 0, duration: 1 }, position);
+  target.to(".--timeline-time4", { y: 100, autoAlpha: 0, duration: 1 }, position);
+  target.to(".--timeline-time5", { y: -100, autoAlpha: 0, duration: 1 }, position);
+  target.to(".--timeline-time1", { y: 0, autoAlpha: 1, duration: 1 });
+  target.to(".--timeline-time2", { y: 0, autoAlpha: 1, duration: 1 }, position);
+  target.to(".--timeline-time3", { y: 0, autoAlpha: 1, duration: 1 }, position);
+  target.to(".--timeline-time4", { y: 0, autoAlpha: 1, duration: 1 }, position);
+  target.to(".--timeline-time5", { y: 0, autoAlpha: 1, duration: 1 }, position);
+}
+
 const tl_time = gsap.timeline({ repeat: -1, repeatDelay: 1 });
 
 tl_time.set(".--timeline-time__txt", { textContent: "モーションを重ねない動き", color: "red" });
-tl_time.to(".--timeline-time1", { y: -100, autoAlpha: 0, duration: 1 });
-tl_time.to(".--timeline-time2", { y: 100, autoAlpha: 0, duration: 1 });
-tl_time.to(".--timeline-time3", { y: -100, autoAlpha: 0, duration: 1 });
-tl_time.to(".--timeline-time4", { y: 100, autoAlpha: 0, duration: 1 });
-tl_time.to(".--timeline-time5", { y: -100, autoAlpha: 0, duration: 1 });
+tl_time_func(tl_time, "+=0");
 tl_time.set(".--timeline-time__txt", { textContent: "モーションを重ねる動き", color: "blue", delay: 1 });
-tl_time.to(".--timeline-time1", { y: 0, autoAlpha: 1, duration: 1 });
-tl_time.to(".--timeline-time2", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
-tl_time.to(".--timeline-time3", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
-tl_time.to(".--timeline-time4", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
-tl_time.to(".--timeline-time5", { y: 0, autoAlpha: 1, duration: 1 }, "-=0.7");
+tl_time_func(tl_time, "-=0.7");
+
+//さらにネストする
+function tl_time_m1(target) {
+  const tl = gsap.timeline();
+  tl.to(target, { y: -100, autoAlpha: 0, duration: 1 });
+  return tl;
+}
+
+function tl_time_m2(target) {
+  const tl = gsap.timeline();
+  tl.to(target, { y: 100, autoAlpha: 0, duration: 1 });
+  return tl;
+}
+
+function tl_time_m3(target) {
+  const tl = gsap.timeline();
+  tl.to(target, { y: 0, autoAlpha: 1, duration: 1 });
+  return tl;
+}
+
+function tl_time_func2(tl_main, position) {
+  let i = 1;
+  document.querySelectorAll(".--timeline-time").forEach((elm) => {
+    let timing = position;
+    if(i === 1) {
+      timing = "+=0";
+    }
+    if(i % 2 !== 0) {
+      tl_main.add(tl_time_m1(elm), timing);
+    }else{
+      tl_main.add(tl_time_m2(elm), timing);
+    }
+    i++;
+  });
+
+  i = 1;
+  document.querySelectorAll(".--timeline-time").forEach((elm) => {
+    timing = position;
+    if(i === 1) {
+      timing = "+=0";
+    }
+    tl_main.add(tl_time_m3(elm), timing);
+    i++;
+  });
+}
+
+const tl_time2 = gsap.timeline({ repeat: -1, repeatDelay: 1 });
+tl_time2.set(".--timeline-time__txt2", { textContent: "モーションを重ねない動き", color: "red" });
+tl_time_func2(tl_time2, "+=0");
+tl_time2.set(".--timeline-time__txt2", { textContent: "モーションを重ねる動き", color: "blue", delay: 1 });
+tl_time_func2(tl_time2, "-=0.7");
